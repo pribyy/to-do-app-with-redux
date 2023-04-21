@@ -1,7 +1,11 @@
-import "./App.css";
+import { ToDoBox } from "./ToDo";
 
 function App() {
-  return <div></div>;
+  return (
+    <div className="p-10">
+      <ToDoBox />
+    </div>
+  );
 }
 
 export default App;
