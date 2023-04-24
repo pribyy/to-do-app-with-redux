@@ -8,7 +8,7 @@ export const ToDoBox = () => {
   //managing state for the entire list (adding newListItem to toDoList onclick)
   const [toDoList, setToDoList] = useState(listOfTasks);
 
-  console.log(`this is mapped tasks: ${toDoList}`);
+  console.log(`this is mapped tasks or toDoList variable: ${toDoList}`);
 
   return (
     <div className="w-1/2 m-auto ">
@@ -26,13 +26,19 @@ export const ToDoBox = () => {
 
 const AddItemsContainer = (props) => {
   const handleButtonClick = () => {
-    if (props.toDoList !== "") {
+    if (props.newListItem !== "") {
       props.setToDoList((prevState) => [
         ...prevState,
         { id: Date.now(), task: props.newListItem, completed: false },
       ]);
 
       props.setNewListItem("");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      handleButtonClick();
     }
   };
 
@@ -43,14 +49,20 @@ const AddItemsContainer = (props) => {
         placeholder="Buy apples..."
         className="w-full p-2 mb-5 border rounded"
         value={props.newListItem}
+        onKeyDown={handleKeyDown}
         onChange={(e) => props.setNewListItem(e.target.value)}
       ></input>
-      <button
+      <submit
+        disabled={!props.newListItem}
         onClick={handleButtonClick}
-        className="absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90%"
+        className={
+          !props.newListItem
+            ? `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-sky-100`
+            : `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90%`
+        }
       >
         +
-      </button>
+      </submit>
     </div>
   );
 };
