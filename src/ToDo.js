@@ -58,7 +58,7 @@ const AddItemsContainer = (props) => {
         className={
           !props.newListItem
             ? `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-sky-100`
-            : `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90%`
+            : `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% cursor-pointer`
         }
       >
         +
