@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { listOfTasks } from "./listoftasks";
 
 export const ToDoBox = () => {
   //tracking new list item via input & react; variable shared between child components
   const [newListItem, setNewListItem] = useState("");
 
-  //managing state for the entire list (adding newListItem to toDoList onclick)
-  const [toDoList, setToDoList] = useState(listOfTasks);
+  //managing state for the entire to do list
+  //used for add and delete newListItem
+  const [toDoList, setToDoList] = useState([]);
 
   console.log(`this is mapped tasks or toDoList variable: ${toDoList}`);
 
@@ -19,26 +19,34 @@ export const ToDoBox = () => {
         toDoList={toDoList}
         setToDoList={setToDoList}
       />
-      <ListContainer newListItem={newListItem} toDoList={toDoList} />
+      <ListContainer
+        newListItem={newListItem}
+        toDoList={toDoList}
+        setToDoList={setToDoList}
+      />
     </div>
   );
 };
 
 const AddItemsContainer = (props) => {
-  const handleButtonClick = () => {
+  const handleSubmit = () => {
+    //if input is not blank...
     if (props.newListItem !== "") {
+      //remember previous iteration of the list while adding in to the new list item to the array
       props.setToDoList((prevState) => [
         ...prevState,
+        //list item would follow this format:
         { id: Date.now(), task: props.newListItem, completed: false },
       ]);
-
+      //resets input back to blank
       props.setNewListItem("");
     }
   };
 
   const handleKeyDown = (e) => {
+    //keyCode 13 === Enter button
     if (e.keyCode === 13) {
-      handleButtonClick();
+      handleSubmit();
     }
   };
 
@@ -48,36 +56,78 @@ const AddItemsContainer = (props) => {
         type="text"
         placeholder="Buy apples..."
         className="w-full p-2 mb-5 border rounded"
+        //props.newListItem is state variable in parent
         value={props.newListItem}
         onKeyDown={handleKeyDown}
         onChange={(e) => props.setNewListItem(e.target.value)}
       ></input>
       <submit
+        //disable button if blank
         disabled={!props.newListItem}
-        onClick={handleButtonClick}
+        onClick={handleSubmit}
         className={
+          //if disabled, button is grey, otherwise, multi-color gradient
           !props.newListItem
             ? `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-sky-100`
             : `absolute bottom-4 h-10 px-3 py-2 m-2 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% cursor-pointer`
         }
       >
-        +
+        <div>+</div>
       </submit>
     </div>
   );
 };
 const ListContainer = (props) => {
-  const taskItems = props.toDoList.map((task) => {
+  //tracks which task is clicked to highlight it a darker color and enables the X delete button to be shown
+  const [clickedTask, setClickedTask] = useState();
+
+  const handleHighlightClick = (task) => {
+    setClickedTask(task);
+  };
+
+  const handleDelete = (taskToDelete) => {
+    const newTaskItems = props.toDoList.filter(
+      (task) => task.id !== taskToDelete.id
+    );
+    console.log("we are deleting and adding to state", newTaskItems);
+    props.setToDoList(newTaskItems);
+    /* taskItems.filter((taskItem, index) => {
+      console.log(`i clicked delete button for index: ${index}`);
+      if (index !== clickedIndex) return taskItem;
+    });*/
+  };
+
+  const taskItemsRendered = props.toDoList.map((task, index) => {
+    //index here is position within the rendered mapped list
+    console.log(`this is task: ${task}, this is index: ${index}`, task);
+    const isClickedTask = clickedTask?.id === task.id;
+
     return (
-      <div className="flex p-2 mb-px w-50 h-300 border rounded bg-gradient-to-r from-indigo-100 from-10% via-sky-100 via-30% to-emerald-100 to-90%">
+      <div
+        key={task.id}
+        onClick={() => handleHighlightClick(task)}
+        className={
+          isClickedTask
+            ? "hover:cursor-pointer hover:border-3 hover:border-blue-400 active:border-blue-400 flex justify-between py-2 px-4 mb-px w-50 h-300 border rounded bg-gradient-to-r from-indigo-200 from-10% via-sky-200 via-30% to-emerald-200 to-90%"
+            : "hover:cursor-pointer hover:border-3 hover:border-blue-400 active:border-blue-400 flex justify-between py-2 px-4 mb-px w-50 h-300 border rounded bg-gradient-to-r from-indigo-100 from-10% via-sky-100 via-30% to-emerald-100 to-90%"
+        }
+      >
         <p>{task.task}</p>
+        {isClickedTask && (
+          <div
+            onClick={() => handleDelete(task)}
+            className="cursor-pointer font-medium text-red-500 text-lg px-2"
+          >
+            X
+          </div>
+        )}
       </div>
     );
   });
 
   return (
     <div>
-      <div>{taskItems}</div>
+      <div>{taskItemsRendered}</div>
       <div className="p-2 mb-px w-50 h-300 opacity-50">{props.newListItem}</div>
     </div>
   );
