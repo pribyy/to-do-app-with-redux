@@ -61,7 +61,7 @@ const AddItemsContainer = (props) => {
         onKeyDown={handleKeyDown}
         onChange={(e) => props.setNewListItem(e.target.value)}
       />
-      <submit
+      <button
         //disable button if blank
         disabled={!props.newListItem}
         tabIndex={0}
@@ -74,7 +74,7 @@ const AddItemsContainer = (props) => {
         }
       >
         <div>+</div>
-      </submit>
+      </button>
     </div>
   );
 };
@@ -101,9 +101,10 @@ const ListContainer = (props) => {
   const handleKeyDown = (e, task) => {
     //keyCode 46 === Delete button
     console.log(`I pressed delete`);
-    if (e.key === "Delete" && clickedTask?.id === task.id) {
+
+    /* if (e.key === "Delete" && clickedTask?.id === task.id) {
       handleDelete(task);
-    }
+    } */
   };
 
   const taskItemsRendered = props.toDoList.map((task, index) => {
