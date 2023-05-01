@@ -19,7 +19,10 @@ function App() {
 
   return (
     <div className="h-screen p-10 dark:bg-black">
-      <DarkandLightModeToggle handleThemeToggle={handleThemeToggle} />
+      <DarkandLightModeToggle
+        handleThemeToggle={handleThemeToggle}
+        theme={theme}
+      />
       <ToDoBox />
     </div>
   );
