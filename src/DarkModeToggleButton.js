@@ -1,5 +1,7 @@
 export const DarkandLightModeToggleButton = (props) => {
   console.log(`this is the current mode: ${props.theme}`);
+
+  
   return (
     <div className="flex justify-end">
       <button

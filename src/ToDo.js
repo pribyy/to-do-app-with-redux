@@ -11,13 +11,9 @@ export const ToDoBox = () => {
     const savedToDos = localStorage.getItem("toDoList");
 
     //if there are saved todos:
-    if (savedToDos) {
-      //return parsed JSON object back to a javascript object
-      return JSON.parse(savedToDos);
-    } else {
-      //otherwise, return empty array
-      return [];
-    }
+    //return parsed JSON object back to a javascript object
+    //otherwise, return empty array
+    return savedToDos ? JSON.parse(savedToDos) : [];
   });
 
   console.log(`this is mapped tasks or toDoList variable: ${toDoList}`);
