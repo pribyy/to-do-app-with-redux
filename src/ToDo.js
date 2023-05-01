@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const ToDoBox = () => {
   //tracking new list item via input & react; variable shared between child components
   const [newListItem, setNewListItem] = useState("");
 
-  //managing state for the entire to do list
+  //managing state for the entire to do list using localstorage
   //used for add and delete newListItem
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState(() => {
+    //get toDoList from localstorage
+    const savedToDos = localStorage.getItem("toDoList");
+
+    //if there are saved todos:
+    if (savedToDos) {
+      //return parsed JSON object back to a javascript object
+      return JSON.parse(savedToDos);
+    } else {
+      //otherwise, return empty array
+      return [];
+    }
+  });
 
   console.log(`this is mapped tasks or toDoList variable: ${toDoList}`);
+
+  useEffect(() => {
+    localStorage.setItem("toDoList", JSON.stringify(toDoList));
+  }, [toDoList]);
 
   return (
     <div className="w-1/2 m-auto ">
