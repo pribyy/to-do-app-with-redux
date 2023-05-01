@@ -4,7 +4,11 @@ export const DarkandLightModeToggle = (props) => {
     <div className="flex justify-end">
       <button
         onClick={props.handleThemeToggle}
-        className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full"
+        className={
+          props.theme === "light"
+            ? "bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% text-white font-bold p-1 rounded-lg"
+            : "bg-gradient-to-r dark:border-black dark:from-cyan-600 from 10% dark:via-violet-400 dark:to-violet-300 p-1 rounded-lg darK: text-white"
+        }
       >
         {props.theme === "light" ? (
           <svg
