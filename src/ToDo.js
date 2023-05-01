@@ -71,8 +71,10 @@ const AddItemsContainer = (props) => {
         className={
           //if disabled, button is grey, otherwise, multi-color gradient
           !props.newListItem
-            ? `absolute left-100 px-6 py-4 ml-2 mb-5 border rounded bg-sky-100 dark:bg-violet-200`
-            : `absolute px-6 py-4 ml-2 mb-5 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% dark:border-black dark:from-cyan-600 from 10% dark:via-violet-400 dark:to-violet-300  cursor-pointer`
+            ? //disabled color w/ dark mode:
+              `absolute left-100 px-6 py-4 ml-2 mb-5 border rounded bg-sky-100 dark:bg-violet-200`
+            : //normal button color w/ dark mode:
+              `absolute px-6 py-4 ml-2 mb-5 border rounded bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% dark:border-black dark:from-cyan-600 from 10% dark:via-violet-400 dark:to-violet-300  cursor-pointer`
         }
       >
         <div>+</div>
