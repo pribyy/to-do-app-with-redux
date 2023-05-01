@@ -1,8 +1,9 @@
 import { ToDoBox } from "./ToDo";
-import { DarkandLightModeToggle } from "./DarkModeToggle";
+import { DarkandLightModeToggleButton } from "./DarkModeToggleButton";
 import { useState, useEffect } from "react";
 
 function App() {
+  //tracking whether we're in dark or light mode
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <div className="h-screen p-10 dark:bg-black">
-      <DarkandLightModeToggle
+      <DarkandLightModeToggleButton
         handleThemeToggle={handleThemeToggle}
         theme={theme}
       />
