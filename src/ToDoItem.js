@@ -1,4 +1,14 @@
+import { deleteToDo } from "./redux/todoSlice";
+import { useDispatch } from "react-redux";
+
 export const ToDoItem = (props) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    //passing in id as payload
+    dispatch(deleteToDo({ id: props.id }));
+  };
+  
   return (
     <div
       key={props.id}
@@ -7,6 +17,12 @@ export const ToDoItem = (props) => {
       }
     >
       {props.task}
+      <div
+        onClick={handleDelete}
+        className="cursor-pointer font-medium text-red-500 dark:text-slate-200 text-lg px-2"
+      >
+        X
+      </div>
     </div>
   );
 };
