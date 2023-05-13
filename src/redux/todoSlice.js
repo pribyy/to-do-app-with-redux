@@ -1,24 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//slice is a slice of data or group of data
 export const todoSlice = createSlice({
   name: "todos",
   initialState: [
-    { id: 1, title: "todo1", completed: false },
-    { id: 2, title: "todo2", completed: false },
-    { id: 3, title: "todo3", completed: false },
+    { id: 1, task: "Go to the store", completed: false },
+    { id: 2, task: "Workout", completed: false },
+    { id: 3, task: "Cook", completed: false },
+    { id: 4, task: "Read a book", completed: false },
+    { id: 5, task: "Go on a walk", completed: false },
   ],
+  //reducers respond to the action by taking name of action + payload
   reducers: {
-    addTodo: (state, action) => {
-      const newTodo = {
+    //redux passes in current state and action behind the scenes
+    addToDo: (state, action) => {
+      //new logic to update the state
+      const newToDo = {
         id: Date.now(),
-        title: action.payload.title,
+        //where does title come from? createSlice creates the action names based on the reducers
+        task: action.payload.title,
         completed: false,
       };
-      state.push(newTodo);
+      state.push(newToDo);
     },
+    deleteToDo: (state, action) => {},
   },
 });
 
-export const { addTodo } = todoSlice.actions;
+export const { addToDo } = todoSlice.actions;
 
 export default todoSlice.reducer;
