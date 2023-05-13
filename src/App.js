@@ -5,17 +5,17 @@ import { useState } from "react";
 
 function App() {
   //tracking typed characters in the input
-  const [newListItem, setNewListItem] = useState("");
+  const [inputValue, setInputValue] = useState("");
   return (
     <div className="h-screen p-10">
       <ToDoContainer>
-        {/* AddItemsContainer is the input */}
+        {/* AddItemsInput+SubmitButton is the input */}
         <AddItemsInputandSubmitButton
-          newListItem={newListItem}
-          setNewListItem={setNewListItem}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
         />
-        {/* ListContainer holds each new todo item */}
-        <ToDoList newListItem={newListItem} />
+        {/* ToDoList holds each new todo item */}
+        <ToDoList inputValue={inputValue} />
       </ToDoContainer>
     </div>
   );
