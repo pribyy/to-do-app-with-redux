@@ -18,7 +18,7 @@ export function ToDoList(props) {
     <div>
       {mappedDummyToDos}
       {/*writes each character of the list item*/}
-      <div className="p-2 mb-px w-50 h-300 opacity-50">{props.newListItem}</div>
+      <div className="p-2 mb-px w-50 h-300 opacity-50">{props.inputValue}</div>
     </div>
   );
 }
