@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
-import { addTodo } from "./redux/todoSlice";
+//addToDo is the reducer that gets hooked up to the submit button via dispatch function
+import { addToDo } from "./redux/todoSlice";
 
 export function AddItemsInputandSubmitButton(props) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    if (props.newListItem) {
-      dispatch(addTodo({ title: props.newListItem }));
+    //if there is an inputValue and it is not blank...
+    if (props.inputValue) {
+      //dispatch the addToDo action to the store
+      //for each action, need to know the title which would be the input value
+      dispatch(addToDo({ title: props.inputValue }));
     }
     /*//if input is not blank...
     if (props.newListItem !== "") {
@@ -28,16 +32,16 @@ export function AddItemsInputandSubmitButton(props) {
         placeholder="Buy apples..."
         className="w-full pt-4 pb-3 px-4 text-lg mb-5 border rounded dark:bg-zinc-800 dark:text-slate-200 dark:border-black"
         //props.newListItem is state variable in parent
-        value={props.newListItem}
-        onChange={(e) => props.setNewListItem(e.target.value)}
+        value={props.inputValue}
+        onChange={(e) => props.setInputValue(e.target.value)}
       />
       <button
         //disable button if blank
-        disabled={!props.newListItem}
+        disabled={!props.inputValue}
         onClick={handleSubmit}
         className={
           //if disabled, button is grey, otherwise, multi-color gradient
-          !props.newListItem
+          !props.inputValue
             ? //disabled color w/ dark mode:
               `absolute left-100 px-6 py-4 ml-2 mb-5 border rounded bg-sky-100 dark:bg-violet-200`
             : //normal button color w/ dark mode:
