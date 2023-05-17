@@ -10,10 +10,7 @@ function App() {
     <div className="h-screen p-10">
       <ToDoContainer>
         {/* AddItemsInput+SubmitButton is the input */}
-        <AddItemsInputandSubmitButton
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-        />
+        <AddItemsInputandSubmitButton />
         {/* ToDoList holds each new todo item */}
         <ToDoList inputValue={inputValue} />
       </ToDoContainer>

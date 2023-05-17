@@ -8,7 +8,7 @@ export const ToDoItem = (props) => {
     //passing in id as payload
     dispatch(deleteToDo({ id: props.id }));
   };
-  
+
   return (
     <div
       key={props.id}

@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//slice is a slice of data or group of data
+export const inputValueSlice = createSlice({
+  name: "inputValue",
+  initialState: [],
+  reducers: {
+    valuesOnChange: (state, action) => {
+      state.push(action.payload);
+    },
+  },
+});
 export const todoSlice = createSlice({
   name: "todos",
   initialState: [
@@ -14,10 +22,8 @@ export const todoSlice = createSlice({
   reducers: {
     //redux passes in current state and action behind the scenes
     addToDo: (state, action) => {
-      //new logic to update the state
       const newToDo = {
         id: Date.now(),
-        //where does title come from? createSlice creates the action names based on the reducers
         task: action.payload.title,
         completed: false,
       };
@@ -29,6 +35,7 @@ export const todoSlice = createSlice({
   },
 });
 
-export const { addToDo, deleteToDo } = todoSlice.actions;
+export const { addToDo, deleteToDo, clickedToDo } = todoSlice.actions;
 
+//todoSlice.reducer is todoReducer in the store
 export default todoSlice.reducer;
