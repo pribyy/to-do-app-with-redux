@@ -7,9 +7,12 @@ export const inputValueSlice = createSlice({
     addValuesOnChange: (state, action) => {
       return action.payload;
     },
+    reset: (state, action) => {
+      return "";
+    },
   },
 });
 
 //action creator =
-export const { addValuesOnChange } = inputValueSlice.actions;
+export const { addValuesOnChange, reset } = inputValueSlice.actions;
 export default inputValueSlice.reducer;

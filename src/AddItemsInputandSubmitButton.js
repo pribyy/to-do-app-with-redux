@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 //addToDo is the reducer that gets hooked up to the submit button via dispatch function
 import { addToDo } from "./redux/todoSlice";
-import { addValuesOnChange } from "./redux/inputValueSlice";
+import { addValuesOnChange, reset } from "./redux/inputValueSlice";
 
 export function AddItemsInputandSubmitButton(props) {
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ export function AddItemsInputandSubmitButton(props) {
       //dispatch the addToDo action to the store
       //for each action, need to know the title which would be the input value
       dispatch(addToDo({ title: inputValues }));
+      dispatch(reset());
     }
   };
 

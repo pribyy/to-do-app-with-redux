@@ -1,14 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const inputValueSlice = createSlice({
-  name: "inputValue",
-  initialState: [],
-  reducers: {
-    valuesOnChange: (state, action) => {
-      state.push(action.payload);
-    },
-  },
-});
 export const todoSlice = createSlice({
   name: "todos",
   initialState: [
