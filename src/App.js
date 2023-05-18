@@ -1,18 +1,17 @@
 import { ToDoContainer } from "./ToDoContainer";
 import { AddItemsInputandSubmitButton } from "./AddItemsInputandSubmitButton";
 import { ToDoList } from "./ToDoList";
-import { useState } from "react";
+import { DarkandLightModeToggleButton } from "./DarkModeToggleButton";
 
 function App() {
-  //tracking typed characters in the input
-  const [inputValue, setInputValue] = useState("");
   return (
     <div className="h-screen p-10">
+      <DarkandLightModeToggleButton />
       <ToDoContainer>
         {/* AddItemsInput+SubmitButton is the input */}
         <AddItemsInputandSubmitButton />
         {/* ToDoList holds each new todo item */}
-        <ToDoList inputValue={inputValue} />
+        <ToDoList />
       </ToDoContainer>
     </div>
   );

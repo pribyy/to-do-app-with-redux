@@ -1,18 +1,26 @@
-export const DarkandLightModeToggleButton = (props) => {
-  console.log(`this is the current mode: ${props.theme}`);
+import { toggleTheme } from "./redux/lightDarkThemeSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-  
+export const DarkandLightModeToggleButton = () => {
+  const dispatch = useDispatch();
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme());
+  };
+  const theme = useSelector((state) => state.theme);
+  console.log(`this is the current mode: ${theme}`);
+
   return (
     <div className="flex justify-end">
       <button
-        onClick={props.handleThemeToggle}
+        onClick={handleThemeToggle}
         className={
-          props.theme === "light"
+          theme === "light"
             ? "bg-gradient-to-r from-emerald-200 from 10% via-sky-200 to-indigo-200 to-90% text-white font-bold p-1 rounded-lg"
             : "bg-gradient-to-r dark:border-black dark:from-cyan-600 from 10% dark:via-violet-400 dark:to-violet-300 p-1 rounded-lg darK: text-white"
         }
       >
-        {props.theme === "light" ? (
+        {theme === "light" ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
