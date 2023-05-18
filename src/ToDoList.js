@@ -1,6 +1,5 @@
 import { ToDoItem } from "./ToDoItem";
 import { useSelector } from "react-redux";
-import { addValuesOnChange } from "./redux/inputValueSlice";
 
 export function ToDoList(props) {
   //useSelector hook allows you to hook up your data from redux slice to your component and use it
@@ -9,7 +8,7 @@ export function ToDoList(props) {
 
   const inputValues = useSelector((state) => state.inputValues);
 
-  const mappedDummyToDos = todos.map((todo) => {
+  const mappedToDos = todos.map((todo) => {
     return (
       <div>
         <ToDoItem task={todo.task} id={todo.id} />
@@ -19,7 +18,7 @@ export function ToDoList(props) {
 
   return (
     <div>
-      {mappedDummyToDos}
+      {mappedToDos}
       {/*writes each character of the list item*/}
       <div className="p-2 mb-px w-50 h-300 opacity-50">{inputValues}</div>
     </div>
