@@ -2,13 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const todoSlice = createSlice({
   name: "todos",
-  initialState: [
-    { id: 1, task: "Go to the store", completed: false },
-    { id: 2, task: "Workout", completed: false },
-    { id: 3, task: "Cook", completed: false },
-    { id: 4, task: "Read a book", completed: false },
-    { id: 5, task: "Go on a walk", completed: false },
-  ],
+  initialState: [],
   //reducers respond to the action by taking name of action + payload
   reducers: {
     //redux passes in current state and action behind the scenes
