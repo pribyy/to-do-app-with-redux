@@ -32,6 +32,7 @@ export function AddItemsInputandSubmitButton({ inputValue }) {
       />
       <button
         //disable button if blank
+        tabIndex={0}
         disabled={!inputValues}
         onClick={handleSubmit}
         className={
