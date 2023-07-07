@@ -1,17 +1,7 @@
-import { deleteToDo } from "../redux/todoSlice";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { ItemDeleteButton } from "./ItemDeleteButton";
 
 export const ToDoItem = ({ id, task }) => {
-  const dispatch = useDispatch();
-
-  const theme = useSelector((state) => state.theme);
-
-  const handleDelete = () => {
-    //passing in id as payload
-    dispatch(deleteToDo({ id: id }));
-  };
-
   const [clickedToDo, setClickedToDo] = useState(false);
 
   const handleOnClick = () => {
@@ -29,14 +19,7 @@ export const ToDoItem = ({ id, task }) => {
       }
     >
       {task}
-      {clickedToDo && (
-        <div
-          onClick={handleDelete}
-          className="cursor-pointer font-medium text-red-500 dark:text-slate-200 text-lg px-2"
-        >
-          X
-        </div>
-      )}
+      {clickedToDo && <ItemDeleteButton id={id} />}
     </div>
   );
 };
